@@ -36,10 +36,7 @@ Your users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
-
-## My process
+- Live Site URL: [advice-quote-generator](https://bolexzy.github.io/advice-quote-generator/)
 
 ## My process
 
@@ -63,7 +60,7 @@ One of the main challenges I faced was handling errors from the API. I learned h
 
 This project was a great learning experience. It helped me improve my problem-solving skills and deepen my understanding of JavaScript and API interaction.
 
-### Built with
+## Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
@@ -73,18 +70,18 @@ This project was a great learning experience. It helped me improve my problem-so
 - [Next.js](https://nextjs.org/) - React framework
 - [Daisy UI](https://daisyui.com.com/) - For styles
 
-### What I learned
+## What I learned
 
 Through this project, I learned how to use the Fetch API to retrieve data from an external API and dynamically update the DOM.
 
-### Continued development
+## Continued development
 
 In the future, I plan to add more features to this app, such as the ability to save favorite pieces of advice and share them on social media.
 
 ## Author
 
 - Website - [Boluwatife Emmanuel](https://boluwatife-linktree.vercel.app)
-- Twitter - [@yourusername](https://www.twitter.com/Bolexzyy__)
+- Twitter - [@Bolexzyy__](https://www.twitter.com/Bolexzyy__)
 
 ## Acknowledgments
 
