@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Frontend Mentor | Advice generator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body class="w-full min-h-screen h-full flex flex-col items-center justify-center xl:p-32 lg:py-24 md:py-16 p-4">
+
+  <!-- Advice #Advice ID goes here -->
+  <!-- quote container  -->
+  <div class="stack">
+
+  </div>
+
+
+  <!-- dice button  -->
+  <div
+    class="h-14 w-14 rounded-full flex items-center justify-center p-2 my-10 active:bg-[#75f4b5] hover:shadow-inner hover:shadow hover:shadow-lg hover:shadow-[#75f4b5] group bg-[#52ffa8] transition-all duration-300 ease-in-out">
+    <button class="btn btn-sm  h-auto bg-transparent border-none hover:bg-transparent p-0 ">
+      <img src="/advice-generator-app-main/images/icon-dice.svg" alt="dice"
+        class="w-6 h-6 dice group-active:animate-spin ">
+    </button>
+  </div>
+
+  <!-- "Advice text goes here" -->
+
+  <div class="attribution my-12 text-base">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://boluwatife-linktree.vercel.app" target="_blank">Boluwatife Emmanuel</a>.
+  </div>
+</body>
+<script>
+  // Create a loading element
+  var loading = document.createElement('div');
+  loading.className = "border border-gray-500 flex shadow-md card items-center justify-around text-center xl:p-10 bg-[#313A49] w-[350px] h-[250px] sm:w-[420px] sm:h-[250px]  md:w-[500px] md:h-[300px] lg:w-[550px] lg:h-[300px] rounded-xl";
+  // Add the card body to the skeleton
+  var loadingBody = document.createElement('div');
+  loadingBody.className = "card-body flex items-center justify-center flex-col";
+  loading.appendChild(loadingBody);
+
+  // Add the advice ID to the card body
+  var loadingAdviceId = document.createElement('h3');
+  loadingAdviceId.className = "w-28  skeleton h-4";
+  loadingBody.appendChild(loadingAdviceId);
+
+  // Add the advice to the card body
+  var loadingAdvice = document.createElement('p');
+  loadingAdvice.className = "skeleton w-[300px] h-8 my-6";
+  loadingBody.appendChild(loadingAdvice);
+
+  // Add the divider to the card body
+  var loadingDivider = document.createElement('div');
+  loadingDivider.className = "skeleton w-[300px] sm:w-[350px] h-2 ";
+  loadingBody.appendChild(loadingDivider);
+
+  // document.querySelector('.stack').prepend(loading);
+
+
+
+  // Function to fetch advice and add a new card
+  function fetchAdvice() {
+    document.querySelector('.stack').prepend(loading);
+
+    // Show the loading element
+    loading.style.display = "block";
+    // Fetch data from the API
+    fetch('https://api.adviceslip.com/advice')
+      .then(response => response.json())  // Parse the data as JSON
+      .then(data => {
+
+        // loading.style.display = "none";
+
+        // Create a new card element
+        var newCard = document.createElement('div');
+        newCard.className = "border flex border-gray-500 hover:border-none hover:shadow-none shadow-md card items-center justify-around text-center xl:p-10 bg-[#313A49] w-[350px] h-[250px] sm:w-[420px] sm:h-[250px] md:w-[500px] md:h-[300px] lg:w-[550px] lg:h-[300px] rounded-xl";
+
+        // Add the card body to the card
+        var cardBody = document.createElement('div');
+        cardBody.className = "card-body";
+        newCard.appendChild(cardBody);
+
+        // Add the advice ID to the card body
+        var adviceId = document.createElement('h3');
+        adviceId.className = "w-full self-start text-green-400 text-xs sm:text-sm xl:text-base tracking-widest font-medium uppercase";
+        adviceId.innerText = "Advice #" + data.slip.id;
+        cardBody.appendChild(adviceId);
+
+        // Add the advice to the card body
+        var advice = document.createElement('p');
+        advice.className = "text-lg xl:text-xl font-bold capitalize text-slate-300 my-6";
+        advice.innerText = '"' + data.slip.advice + '"';
+        cardBody.appendChild(advice);
+
+        // Add the divider to the card body
+        var divider = document.createElement('img');
+        divider.src = "/advice-generator-app-main/images/pattern-divider-desktop.svg";
+        divider.alt = "divider";
+        cardBody.appendChild(divider);
+
+        // Append the new card to the stack
+        document.querySelector('.stack').prepend(newCard);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+  }
+
+  // Fetch advice on page load
+  fetchAdvice();
+
+  // Fetch advice on button click
+  document.querySelector('.dice').addEventListener('click', fetchAdvice);
+</script>
+
+</html>
